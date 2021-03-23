@@ -16,7 +16,11 @@ $(document).ready(() => {
     $("#output").html(outputFile);
   });
   $("#go").click(async () => {
-    await ipcRenderer.invoke("flatten", inputFile, outputFile);
-    alert("Flattened!");
+    if(inputFile != "" && outputFile != ""){
+      await ipcRenderer.invoke("flatten", inputFile, outputFile);
+      alert("Flattened!");
+    } else {
+      alert("Must choose an input and output file!")
+    }
   });
 });
